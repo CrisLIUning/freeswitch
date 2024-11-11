@@ -1554,6 +1554,9 @@ SWITCH_DECLARE(switch_status_t) switch_channel_set_variable_strip_quotes_var_che
 		}
 		status = SWITCH_STATUS_SUCCESS;
 	}
+	else {
+		switch_log_printf(SWITCH_CHANNEL_CHANNEL_LOG(channel), SWITCH_LOG_CRIT, "channel->variables is {%p} or {%s}\n", (void*)channel->variables, varname ? varname : "");
+	}
 	switch_mutex_unlock(channel->profile_mutex);
 
 	return status;
@@ -1583,6 +1586,9 @@ SWITCH_DECLARE(switch_status_t) switch_channel_add_variable_var_check(switch_cha
 			}
 		}
 		status = SWITCH_STATUS_SUCCESS;
+	}
+	else {
+		switch_log_printf(SWITCH_CHANNEL_CHANNEL_LOG(channel), SWITCH_LOG_CRIT, "channel->variables is {%p} or {%s}\n", (void *)channel->variables, varname? varname: "");
 	}
 	switch_mutex_unlock(channel->profile_mutex);
 

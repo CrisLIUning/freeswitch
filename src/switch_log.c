@@ -565,9 +565,9 @@ SWITCH_DECLARE(void) switch_log_meta_vprintf(switch_text_channel_t channel, cons
 	switch_time_t now = switch_micro_time_now();
 	uint32_t len;
 #ifdef SWITCH_FUNC_IN_LOG
-	const char *extra_fmt = "%s [%s] %s:%d %s()%c%s";
+	const char *extra_fmt = "[%ld] %s [%s] %s:%d %s()%c%s";
 #else
-	const char *extra_fmt = "%s [%s] %s:%d%c%s";
+	const char *extra_fmt = "[%ld] %s [%s] %s:%d%c%s";
 #endif
 	switch_log_level_t limit_level = runtime.hard_log_level;
 	switch_log_level_t special_level = SWITCH_LOG_UNINIT;
@@ -624,9 +624,9 @@ SWITCH_DECLARE(void) switch_log_meta_vprintf(switch_text_channel_t channel, cons
 		new_fmt = malloc(len + 1);
 		switch_assert(new_fmt);
 #ifdef SWITCH_FUNC_IN_LOG
-		switch_snprintf(new_fmt, len, extra_fmt, date, switch_log_level2str(level), filep, line, funcp, 128, fmt);
+		switch_snprintf(new_fmt, len, extra_fmt, switch_thread_self(), date, switch_log_level2str(level), filep, line, funcp, 128, fmt);
 #else
-		switch_snprintf(new_fmt, len, extra_fmt, date, switch_log_level2str(level), filep, line, 128, fmt);
+		switch_snprintf(new_fmt, len, extra_fmt, switch_thread_self(), date, switch_log_level2str(level), filep, line, 128, fmt);
 #endif
 
 		fmt = new_fmt;
