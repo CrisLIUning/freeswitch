@@ -3040,15 +3040,15 @@ SWITCH_DECLARE(switch_status_t) switch_ivr_originate(switch_core_session_t *sess
 					}
 				}
 
-				switch_event_add_header_string(var_event, SWITCH_STACK_BOTTOM, "originate_early_media", oglobals.early_ok ? "true" : "false");
+				//switch_event_add_header_string(var_event, SWITCH_STACK_BOTTOM, "originate_early_media", oglobals.early_ok ? "true" : "false");
 
 
-				if (caller_channel && switch_true(switch_channel_get_variable(caller_channel, "push_channel_name"))) {
-					char *new_name = switch_core_session_sprintf(session, "%s__B", switch_channel_get_name(caller_channel));
-					switch_event_add_header_string(var_event, SWITCH_STACK_BOTTOM, "origination_channel_name", new_name);
-					new_name = switch_core_session_sprintf(session, "_%s", switch_channel_get_name(caller_channel));
-					switch_event_add_header_string(var_event, SWITCH_STACK_BOTTOM, "sip_h_X-FS-Channel-Name", new_name);
-				}
+				//if (caller_channel && switch_true(switch_channel_get_variable(caller_channel, "push_channel_name"))) {
+				//	char *new_name = switch_core_session_sprintf(session, "%s__B", switch_channel_get_name(caller_channel));
+				//	switch_event_add_header_string(var_event, SWITCH_STACK_BOTTOM, "origination_channel_name", new_name);
+				//	new_name = switch_core_session_sprintf(session, "_%s", switch_channel_get_name(caller_channel));
+				//	switch_event_add_header_string(var_event, SWITCH_STACK_BOTTOM, "sip_h_X-FS-Channel-Name", new_name);
+				//}
 
 
 				reason = switch_core_session_outgoing_channel(oglobals.session, originate_var_event, chan_type,
@@ -3225,7 +3225,7 @@ SWITCH_DECLARE(switch_status_t) switch_ivr_originate(switch_core_session_t *sess
 						l_session = NULL;
 					}
 
-					switch_channel_set_variable(oglobals.originate_status[i].peer_channel, "originate_endpoint", chan_type);
+					//switch_channel_set_variable(oglobals.originate_status[i].peer_channel, "originate_endpoint", chan_type);
 					switch_channel_execute_on(oglobals.originate_status[i].peer_channel, SWITCH_CHANNEL_EXECUTE_ON_ORIGINATE_VARIABLE);
 					switch_channel_api_on(oglobals.originate_status[i].peer_channel, SWITCH_CHANNEL_API_ON_ORIGINATE_VARIABLE);
 				}
