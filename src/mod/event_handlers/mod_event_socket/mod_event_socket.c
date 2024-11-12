@@ -1452,7 +1452,7 @@ static switch_status_t read_packet(listener_t *listener, switch_event_t **event,
 					len = strlen(listener->ebuf);
 					switch_socket_send(listener->sock, listener->ebuf, &len);
 
-					switch_safe_free(listener->ebuf);
+						switch_safe_free(listener->ebuf);
 
 				  endloop:
 
